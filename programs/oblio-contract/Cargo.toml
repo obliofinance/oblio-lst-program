@@ -1,0 +1,36 @@
+[package]
+name = "oblio-contract"
+version = "0.2.0"
+description = "Oblio Liquid Staking & Confidential Token-2022 Protocol"
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "oblio_contract"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+# NOTE: `overflow-checks = true` must be set in the *workspace root* Cargo.toml:
+#   [profile.release]
+#   overflow-checks = true
+#   lto = "fat"
+#   codegen-units = 1
+
+[dependencies]
+anchor-lang = { version = "1.2.1", default-features = false, features = ["derive", "solana-v4"] }
+anchor-spl = { version = "1.2.1", default-features = false, features = ["mint", "token", "token_2022", "token_2022_extensions", "stake", "solana-v4"] }
+solana-stake-interface = { version = "4.4", features = ["bincode", "sysvar"] }
+bytemuck = "1"
+solana-epoch-rewards = { version = "3.1", features = ["sysvar"] }
+solana-get-sysvar = "1"
+
+# Integration tests live in ./integration-tests.

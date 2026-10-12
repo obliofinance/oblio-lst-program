@@ -1,0 +1,20 @@
+skip_local_validator = true
+
+[toolchain]
+anchor_version = "1.2.1"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+oblio_contract = "6oCMmWL81taqYQNxtw8xF5n59FjxhmzweLg8Xaymjxep"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "cargo test"
+
+[hooks]
